@@ -17,12 +17,22 @@ def generate_short_url(length=6):
 def index():
     if request.method == "POST":
         long_url = request.form["long_url"]
-        short_url = generate_short_url()
-        while short_url in shortened_urls:
+        custom_slug = request.form.get("custom_slug", "").strip()
+
+        if custom_slug:
+            # Check if the requested custom alias is already taken
+            if custom_slug in shortened_urls:
+                return "Error: That custom short URL is already taken!", 400
+            short_url = custom_slug
+        else:
+            # Fall back to auto-generating a random code
             short_url = generate_short_url()
+            while short_url in shortened_urls:
+                short_url = generate_short_url()
 
         shortened_urls[short_url] = long_url
         return f"Shortened URL: {request.url_root}{short_url}"
+        
     return render_template("index.html")
 
 @app.route("/<short_url>")
