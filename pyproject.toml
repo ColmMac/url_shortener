@@ -1,0 +1,19 @@
+[project]
+name = "urlshorten"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [
+    { name = "ColmMac", email = "colmmac7@gmail.com" }
+]
+requires-python = ">=3.7"
+dependencies = [
+    "flask>=2.2.5",
+]
+
+[project.scripts]
+urlshorten = "urlshorten:main"
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
