@@ -9,7 +9,9 @@
     <h1>URL Shortener</h1>
     <form method="POST" action="{{ url_for('index') }}">
         <input type="text" name="long_url" placeholder="Enter the long URL:" required>
+        <input type="text" name="custom_slug" placeholder="Custom short tag (optional)">
         <button type="submit">Shorten</button>
     </form>
+    
 </body>
 </html>
